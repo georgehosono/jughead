@@ -49,3 +49,7 @@ Note: CSS files should be placed under the `assets` directory e.g. `assets/css/f
 [params]
 	customcss = ["css/first.css", "css/second.css"]
 ```
+
+# TODOs
+	- Load fonts from a CDN
+	- Move to prism code highlighting

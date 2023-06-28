@@ -116,7 +116,7 @@ figure h4::before {
 /* Code blocks */
 code {
   padding: .1em .2em;
-  font-family: 'Hack Mono', monospace;
+  font-family: 'Fira Code', monospace;
 }
 
 pre {
