@@ -1,32 +1,40 @@
 /* Markdown */
-:root{
---maincolor: red;
---bordercl:rebeccapurple;
---callouctcolor:dodgerblue;
---hovercolor:navy;
---darkMaincolor: #50fa7b;
+:root[data-theme="light"] {
+  --maincolor: var(--orange1);
+  --bordercl: var(--yellow1);
+  --calloutcolor: var(--yellow1);
+  --hovercolor: var(--red2);
+  --darkMaincolor: var(--bg);
+}
+:root[data-theme="dark"] {
+  --maincolor: var(--blue1);
+  --bordercl: var(--aqua1);
+  --calloutcolor: var(--cyan1);
+  --hovercolor: var(--blue2);
+  --darkMaincolor: var(--bg);
 }
 html {
-  color: #232333;
-  font-family: 'Roboto Mono', monospace;
+  color: var(--fg);
+  font-family: 'Hack Mono', monospace;
   font-size: 15px;
   line-height: 1.6em;
 }
 body{
   display: block;
   margin: 8px;
+  background-color: var(--bg);
+  color: var(--fg);
 }
 * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-::selection {
-  background: var(--maincolor);
-  color: #fff;
-}
+/*::selection {*/
+  /*background: var(--bg2);*/
+/*}*/
 
 p {
-  font-family: 'Fira Sans', sans-serif;
+  font-family: 'Noto Sans', sans-serif;
   line-height: 1.5;
 }
 
@@ -38,19 +46,27 @@ hr {
 
 blockquote {
   border-left: 3px solid var(--bordercl);
-  color: #737373;
+  color: var(--fg4);
   margin: 0;
   padding-left: 1em;
 }
 
-a {
+/* the dark mode button should appear to be a link */
+#dark-mode-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+a, #dark-mode-toggle {
   border-bottom: 3px solid var(--maincolor);
   color: inherit;
   text-decoration: none;
 }
-a:hover {
-    background-color: var(--hovercolor);
-    color: #fff;
+a:hover, #dark-mode-toggle:hover {
+  border-bottom: 3px solid var(--hovercolor);
+  background-color: var(--hovercolor);
+  color: var(--bg0);
 }
 
 ul {
@@ -99,19 +115,18 @@ figure h4::before {
 
 /* Code blocks */
 code {
-  background-color: #f1f1f1;
   padding: .1em .2em;
+  font-family: 'Hack Mono', monospace;
 }
 
 pre {
-  background-color: #ececec;
   line-height: 1.4;
   overflow-x: auto;
   padding: 1em;
 }
 
 .highlight pre ::selection {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--bg2);
   color: inherit;
 }
 
@@ -137,16 +152,19 @@ header {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 1em 0;
+  padding: 1em 0;
   line-height: 2.5em;
+  color: var(--fg0);
 }
 
 header .main {
   font-size: 1.5rem;
+  font-weight: 500;
 }
 h1, h2, h3, h4, h5, h6 {
   font-size: 1.2rem;
   margin-top: 2em;
+  font-weight: 500;
 }
 
 h1::before { color: var(--maincolor); content: '# '; }
@@ -157,7 +175,7 @@ h5::before { color: var(--maincolor); content: '##### '; }
 h6::before { color: var(--maincolor); content: '###### '; }
 
 .meta {
-  color: #999;
+  color: var(--gray1);
   letter-spacing: -0.5px;
 }
 
@@ -174,10 +192,14 @@ footer {
   align-items: center;
   border-bottom: none;
 }
+/*.soc:hover{*/
+  /*color: var(--bg);*/
+/*}*/
 .border {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
   border: 1px solid;
+  height: 16px;
 }
 .footer-info {
   padding: var(--footer-padding);
@@ -189,7 +211,7 @@ footer {
 }
 
 time {
-  color: grey;
+  color: var(--gray1);
 }
 
 /* Posts */
@@ -199,14 +221,15 @@ article .title {
 
 
 /* Callout */
+/* TODO what are callouts? */
 .callout {
-  background-color: var(--callouctcolor);
-  color: #fff;
+  background-color: var(--calloutcolor);
+  color: var(--fg1);
   padding: 1em;
 }
 
 .callout p {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Hack Mono', monospace;
   margin: 0;
 }
 
@@ -216,7 +239,7 @@ article .title {
 
 .callout a:hover {
   background-color: #fff;
-  color: var(--callouctcolor);
+  color: var(--calloutcolor);
 }
 
 .site-description {
@@ -226,18 +249,15 @@ justify-content: space-between;
 .tags li::before{
   content: "🏷 ";
 }
-.tags a{
+.tags a {
   border-bottom: 3px solid var(--maincolor); 
 }
-.tags a:hover{
-  color:white;
+.tags a:hover {
+  color: var(--bg);
   background-color: var(--hovercolor); 
 }
 svg{
   max-height: 15px;
-}
-.soc:hover{
-  color: white;
 }
 .draft-label{ 
     color: var(--bordercl);
@@ -245,7 +265,7 @@ svg{
     padding: 2px 4px;
     border-radius: 4px;
     margin-left: 6px;
-    background-color: #f9f2f4;
+    background-color: var(--bg2);
 }
 .highlight {
   position: relative;
@@ -255,9 +275,9 @@ svg{
   -webkit-overflow-scrolling: touch;
 }
 .highlight pre code[class*="language-"]::before {
-  background: black;
+  background: var(--fg);
   border-radius: 0 0 0.25rem 0.25rem;
-  color: white;
+  color: var(--bg);
   font-size: 12px;
   letter-spacing: 0.025rem;
   padding: 0.1rem 0.5rem;
@@ -271,48 +291,66 @@ svg{
 .highlight pre code[class=language-javaScript]::before,
 .highlight pre code[class="language-js"]::before {
 content: "js";
-background: #f7df1e;
-color: black;
+background: var(--yellow2);
+color: var(--bg0_h);
 }
 .highlight pre code[class*='language-yml']::before,
 .highlight pre code[class*='language-yaml']::before {
 content: 'yaml';
-background: #f71e6a;
-color: white;
+background: var(--red2);
+color: var(--bg0_h);
 }
 .highlight pre code[class*='language-shell']::before,
 .highlight pre code[class*='language-bash']::before,
 .highlight pre code[class*='language-sh']::before {
 content: 'shell';
-background: green;
-color:white
+background: var(--green2);
+color: var(--bg0_h)
 }
 .highlight pre code[class*='language-json']::before{
 content: 'json';
-background: dodgerblue;
- color: #000000 
+background: var(--blue2);
+color: var(--bg0_h)
 }
 .highlight pre code[class*='language-python']::before,
 .highlight pre code[class*='language-py']::before {
 content: 'py';
-background: blue;
-color: yellow ;
+background: var(--blue2);
+color: var(--bg0_h);
 }
 .highlight pre code[class*='language-css']::before{
 content: 'css';
-background: cyan;
-color: black ;
+background: var(--aqua2);
+color: var(--bg0_h);
 }
 .highlight pre code[class*='language-go']::before{
 content: 'Go';
-background: cyan;
-color: royalblue ;
+background: var(--aqua2);
+color: var(--bg0_h);
 }
 .highlight pre code[class*='language-md']::before,
 .highlight pre code[class*='language-md']::before{
 content: 'Markdown';
-background: royalblue;
-color: whitesmoke ;
+background: var(--purple2);
+color: var(--bg0_h);
+}
+
+.highlight pre code[class*='language-C']::before{
+content: 'C';
+background: var(--blue2);
+color: var(--bg0_h);
+}
+
+.highlight pre code[class*='language-cpp']::before{
+content: 'C++';
+background: var(--blue2);
+color: var(--bg0_h);
+}
+
+.highlight pre code[class*='language-rust']::before{
+content: 'Rust';
+background: var(--red2);
+color: var(--bg0_h);
 }
 
 /* table */
@@ -323,11 +361,11 @@ table {
 
 table th{
   padding: 6px 13px;
-  border: 1px solid #dfe2e5;
+  border: 1px solid var(--gray1);
   font-size: large;
 }
 
 table td{
   padding: 6px 13px;
-  border: 1px solid #dfe2e5;
+  border: 1px solid var(--gray1);
 }
