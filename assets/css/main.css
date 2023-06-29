@@ -18,12 +18,14 @@ html {
   font-family: 'Hack Mono', monospace;
   font-size: 15px;
   line-height: 1.6em;
+  scroll-behavior: smooth;
 }
 body{
   display: block;
   margin: 8px;
   background-color: var(--bg);
   color: var(--fg);
+  overflow-wrap: break-word;
 }
 * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -67,6 +69,9 @@ a:hover, #dark-mode-toggle:hover {
   border-bottom: 3px solid var(--hovercolor);
   background-color: var(--hovercolor);
   color: var(--bg0);
+}
+a.link--external::after {
+  content: "\2009↗"
 }
 
 ul {
