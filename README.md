@@ -1,7 +1,7 @@
 # Jughead - Hugo theme
 Jughead is a minimal theme for Hugo with a markdown-ish look.
 
-Forked from [Archie Theme](https://github.com/athul/archie)
+Combination of [Archie Theme](https://github.com/athul/archie) and [Gruvbox Theme](https://github.com/schnerring/hugo-theme-gruvbox)
 
 ## Demo
 
